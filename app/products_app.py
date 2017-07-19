@@ -17,4 +17,21 @@ menu = """
 
 chosen_operation = input(menu)
 
-print(chosen_operation)
+
+if chosen_operation.title() == 'List':
+    print("LISTING PRODUCTS")
+
+elif chosen_operation.title() == 'Show':
+    print('SHOWING A PROUDCT')
+
+elif chosen_operation.title() == 'Create':
+    print('CREATING A PROUDCT')
+
+elif chosen_operation.title() == 'Update':
+    print('UPDATING A PROUDCT')
+
+elif chosen_operation.title() == 'Destroy':
+    print('DESTROYING A PROUDCT')
+
+else:
+    print("OPPS. PLEASE CHOOSE ONE OF THE RECOGNIZED OPERATIONS")
