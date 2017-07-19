@@ -1,37 +1,37 @@
-print("----------------------------------")
-print("PRODUCTS APPLICATION")
-print("----------------------------------")
-print("Welcome joelstell" + "\n")
-
 menu = """
     Hi.
+
     Welcome to the products app.
 
     There are 100 products.
 
     Available operations: 'List', 'Show', 'Create', 'Update', 'Destroy'
 
-    Please choose an operation
-    """
+    Please choose an operation:
 
+"""
 
 chosen_operation = input(menu)
+chosen_operation = chosen_operation.title()
 
-
-if chosen_operation.title() == 'List':
+def list_products():
     print("LISTING PRODUCTS")
 
-elif chosen_operation.title() == 'Show':
-    print('SHOWING A PROUDCT')
+def show_product():
+    print("SHOWING A PRODUCT")
 
-elif chosen_operation.title() == 'Create':
-    print('CREATING A PROUDCT')
+def create_product():
+    print("CREATING A PRODUCT")
 
-elif chosen_operation.title() == 'Update':
-    print('UPDATING A PROUDCT')
+def update_product():
+    print("UPDATING A PRODUCT")
 
-elif chosen_operation.title() == 'Destroy':
-    print('DESTROYING A PROUDCT')
+def destroy_product():
+    print("DESTROYING A PRODUCT")
 
-else:
-    print("OPPS. PLEASE CHOOSE ONE OF THE RECOGNIZED OPERATIONS")
+if chosen_operation == "List": list_products()
+elif chosen_operation == "Show": show_product()
+elif chosen_operation == "Create": create_product()
+elif chosen_operation == "Update": update_product()
+elif chosen_operation == "Destroy": destroy_product()
+else: print("OOPS. PLEASE CHOOSE ONE OF THE RECOGNIZED OPERATIONS.")
