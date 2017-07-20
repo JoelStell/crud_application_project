@@ -27,8 +27,8 @@ menu = """
 """.format(len(products))
 
 # example of manipulating/changing the products list
-example_new_product = {"id": 100, "name": "New Item", "aisle": "snacks", "department": "snacks", "price":1.99}
-products.append(example_new_product)
+# example_new_product = {"id": 100, "name": "New Item", "aisle": "snacks", "department": "snacks", "price":1.99}
+# products.append(example_new_product)
 
 
 
