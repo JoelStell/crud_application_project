@@ -11,7 +11,7 @@ with open(csv_file_path, "r") as csv_file:
     for row in reader:
         products.append(row)
 
-print(len(products))
+
 
 menu = """
     Hi.
@@ -25,6 +25,25 @@ menu = """
     Please choose an operation:
 
 """.format(len(products))
+
+# example of manipulating/changing the products list
+example_new_product = {"id": 100, "name": "New Item", "aisle": "snacks", "department": "snacks", "price":1.99}
+products.append(example_new_product)
+
+
+
+
+other_path = "data/other_products.csv"
+with open(other_path, "w") as csv_file:
+    writer = csv.DictWriter(csv_file, fieldnames=["id","name","aisle","department","price"])
+    writer.writeheader() # uses fieldnames set above
+    for product in products:
+        writer.writerow(product)
+
+    # writer.writerow({"city": "New York", "name": "Yankees"})
+    # writer.writerow({"city": "New York", "name": "Mets"})
+    # writer.writerow({"city": "Boston", "name": "Red Sox"})
+    # writer.writerow({"city": "New Haven", "name": "Ravens"})
 
 # chosen_operation = input(menu)
 # chosen_operation = chosen_operation.title()
