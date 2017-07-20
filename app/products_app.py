@@ -34,7 +34,7 @@ menu = """
 
 
 other_path = "data/other_products.csv"
-with open(other_path, "w") as csv_file:
+with open(csv_file_path, "w") as csv_file:
     writer = csv.DictWriter(csv_file, fieldnames=["id","name","aisle","department","price"])
     writer.writeheader() # uses fieldnames set above
     for product in products:
