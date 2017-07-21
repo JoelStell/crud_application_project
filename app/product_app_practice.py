@@ -1,18 +1,17 @@
 import csv
-import operator
+
+# Read CSV file
 
 products = []
 
 csv_file_path = "data/products.csv"
 
-# READ PRODUCTS CSV
-
 with open(csv_file_path, "r") as csv_file:
-    reader = csv.DictReader(csv_file)
+    reader = csv.DictReader(csv_file) #each row will be dictionary like
     for row in reader:
         products.append(row)
 
-#products = sorted(products, key=operator.itemgetter("id"))
+
 
 menu = """
     Hi.
@@ -27,6 +26,7 @@ menu = """
 
 """.format(len(products))
 
+
 chosen_operation = input(menu)
 chosen_operation = chosen_operation.title()
 
@@ -34,14 +34,17 @@ def list_products():
     for product in products:
         print(product["id"], product["name"])
 
+
 def show_product():
     while True:
         shown_product = input("Please input a product identifier, or 'DONE' if there are no more items: ")
         if shown_product == "DONE":
             break
         else:
-            reveal_product = [product for product in products if product["id"] == shown_product]
-            print(reveal_product)
+            shown_product = [product for product in products if product["id"] == shown_product]
+            shown_product = list(shown_product) #FIX
+            print(shown_product) #FIX
+
 
 def create_product():
     print("CREATING A PRODUCT")
@@ -49,33 +52,41 @@ def create_product():
     product_aisle = input("aisle is:")
     product_department = input("department is:")
     product_price = input("price is:")
-    new_product = {
+    new_prodcut = {
         "id": len(products) + 1,
         "name": product_name,
         "aisle": product_aisle,
         "department": product_department,
         "price": product_price
     }
-    print("NEW PRODUCT IS", new_product)
-    products.append(new_product)
+    print("NEW PRODCUT IS", new_prodcut)
+    products.append(new_prodcut)
 
-def update_product():
-    print("UPDATING A PRODUCT")
 
+destroyed_ids = []
 def destroy_product():
     print("DESTROYING A PRODUCT")
-    product_ids = []
     while True:
-        product_id = input("Please input a product identifier, or 'DONE' if there are no more items: ")
-        if product_id == "DONE":
+        destroyed_products = input("Please input a product identifier, or 'DONE' if there are no more items: ")
+        if destroyed_products == "DONE":
             break
         else:
-            destroyed_item = []
-            destroyed_item[:] = [d for d in products if d.get('id') == product_id]
-            products[:] = [d for d in products if d.get('id') != product_id] #https://stackoverflow.com/questions/1235618/python-remove-dictionary-from-list
-            print(destroyed_item)
+            destroyed_ids.append(int(destroyed_products)
+                #print(destroyed_ids)
+            #del products["id"] if products["id"] == destroyed_ids
+            # destroyed_products = [product for product in products if product["id"] == destroyed_products]
+            # del
 
-
+# def update_product():
+#     print("UPDATING A PRODUCT")
+    # while True:
+    #     shown_product = input("Please input a product identifier, or 'DONE' if there are no more items: ")
+    #     if shown_product == "DONE":
+    #         break
+    #     else:
+    #         changed_product = [product for product in products if product["id"] == update_product]
+    #         changed_product = list(matching_products) #FIX
+    #         print(matching_products) #FIX
 
 
 if chosen_operation == "List": list_products()
@@ -84,9 +95,6 @@ elif chosen_operation == "Create": create_product()
 elif chosen_operation == "Update": update_product()
 elif chosen_operation == "Destroy": destroy_product()
 else: print("OOPS. PLEASE CHOOSE ONE OF THE RECOGNIZED OPERATIONS.")
-
-
-# OVERWRITING INVENTORY CSV FILE
 
 with open(csv_file_path, "w") as csv_file:
     writer = csv.DictWriter(csv_file, fieldnames=["id","name","aisle","department","price"])
